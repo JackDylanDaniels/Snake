@@ -1,7 +1,7 @@
-#define _CRT_SECURE_NO_WARNINGS //Dla sprintf -> bez tego musialbym napisac sprintf_s, ale to jedynie dziala na VS2022, nie na innych kompilatorach
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
-#include <direct.h>
 #include <cmath>
+#include <stddef.h>
 #include "snake.h"
 #include "game_state.h"
 #include "game.h"
@@ -22,7 +22,7 @@ bool loadDirectionalBitmaps(SDL_Surface* bitmaps[4], SDL_Texture* textures[4],
 };
     for (int dir = 0; dir < 4; dir++) {
         char filepath[256];
-        sprintf(filepath, "%s/%s_%s.bmp", basePath, prefix, directions[dir]);
+        snprintf(filepath, sizeof(filepath), "%s/%s_%s.bmp", basePath, prefix, directions[dir]);
         bitmaps[dir] = SDL_LoadBMP(filepath);
         if (!bitmaps[dir]) {
             fprintf(debugFile, "Failed to load %s: %s\n", filepath, SDL_GetError());
@@ -49,7 +49,7 @@ bool loadTurnBitmaps(SDL_Surface* bitmaps[8], SDL_Texture* textures[8],
 };
     for (int i = 0; i < 8; i++) {
         char filepath[256];
-        sprintf(filepath, "%s/turn/%s_%s.bmp", basePath, prefix, turns[i]);
+        snprintf(filepath, sizeof(filepath), "%s/turn/%s_%s.bmp", basePath, prefix, turns[i]);
         bitmaps[i] = SDL_LoadBMP(filepath);
         if (!bitmaps[i]) {
             fprintf(debugFile, "Failed to load %s: %s\n", filepath, SDL_GetError());

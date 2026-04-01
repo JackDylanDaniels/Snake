@@ -81,13 +81,13 @@ bool checkRedDotCollision(Snake* snake, RedDot* redDot) {
         redDot->messageTimer = 3.0f;
         if (rand() % 2 == 0 && snake->length > 3) {
             snake->length--;
-            sprintf(redDot->bonusStr, "Collected! Shortening snake by 2");
+            snprintf(redDot->bonusStr, sizeof(redDot->bonusStr), "Collected! Shortening snake by 2");
         
 }
         else {
             snake->speedMultiplier *= 0.8f;
             snake->currentSpeed = snake->baseSpeed * snake->speedMultiplier;
-            sprintf(redDot->bonusStr, "Collected! Slowing snake by 20%%");
+            snprintf(redDot->bonusStr, sizeof(redDot->bonusStr), "Collected! Slowing snake by 20%%");
         
 }
         return true;

@@ -1,5 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
+#include <string.h>
 #include "renderer.h"
 #include "text.h"
 #include "substitutes.h"
@@ -129,10 +130,10 @@ void drawStatusBar(GameState* game) {
     char scoreStr[32];
     char modeStr[32];
     char speedStr[32];
-    sprintf(timeStr, "Time: %02d:%02d", (int)game->gameTime / 60, (int)game->gameTime % 60);
-    sprintf(scoreStr, "Score: %d", game->score);
-    sprintf(modeStr, "Mode: %s", game->snake.smoothMovement ? "Smooth" : "Grid");
-    sprintf(speedStr, "Speed: %.1fx", game->snake.speedMultiplier);
+    snprintf(timeStr, sizeof(timeStr), "Time: %02d:%02d", (int)game->gameTime / 60, (int)game->gameTime % 60);
+    snprintf(scoreStr, sizeof(scoreStr), "Score: %d", game->score);
+    snprintf(modeStr, sizeof(modeStr), "Mode: %s", game->snake.smoothMovement ? "Smooth" : "Grid");
+    snprintf(speedStr, sizeof(speedStr), "Speed: %.1fx", game->snake.speedMultiplier);
     int statusStartY = game->gridOffset + statusBarHeight / 4 + 30;
     int statusEndY = game->gridOffset + statusBarHeight - 20;
     int availableHeight = statusEndY - statusStartY;
@@ -162,25 +163,25 @@ void drawRedDotStatus(RedDot* redDot, GameState* game) {
     int textY = game->screenHeight / 2;
     if (redDot->active) {
         char activeText[64];
-        sprintf(activeText, "Red dot active!");
+        snprintf(activeText, sizeof(activeText), "Red dot active!");
         DrawString(game->screen, textStartX, textY, activeText, game->charset);
         char timeText[64];
-        sprintf(timeText, "Time remaining: %s", redDot->timeRemainingStr);
+        snprintf(timeText, sizeof(timeText), "Time remaining: %s", redDot->timeRemainingStr);
         DrawString(game->screen, textStartX, textY + 20, timeText, game->charset);
     
 }
     else if (redDot->showCollectedMessage && redDot->messageTimer > 0) {
         char collectedText[64];
-        sprintf(collectedText, "Collected!");
+        snprintf(collectedText, sizeof(collectedText), "Collected!");
         DrawString(game->screen, textStartX, textY, collectedText, game->charset);
         char bonusText[64];
-        sprintf(bonusText, "Your bonus: %s", redDot->bonusStr);
+        snprintf(bonusText, sizeof(bonusText), "Your bonus: %s", redDot->bonusStr);
         DrawString(game->screen, textStartX, textY + 20, bonusText, game->charset);
     
 }
     else if (redDot->showFailedMessage && redDot->messageTimer > 0) {
         char failedText[64];
-        sprintf(failedText, "Failed to collect");
+        snprintf(failedText, sizeof(failedText), "Failed to collect");
         DrawString(game->screen, textStartX, textY, failedText, game->charset);
     
 }

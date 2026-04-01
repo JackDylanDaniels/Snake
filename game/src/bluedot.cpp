@@ -14,7 +14,7 @@ bool initializeBlueDot(BlueDot* blueDot, GameState* game) {
     blueDot->minScale = 0.7f;
     blueDot->maxScale = 1.0f;
     char filepath[256];
-    sprintf(filepath, "assets/dots/blue_dot.bmp");
+    snprintf(filepath, sizeof(filepath), "assets/dots/blue_dot.bmp");
     blueDot->bitmap = SDL_LoadBMP(filepath);
     if (!blueDot->bitmap) {
         fprintf(debugFile, "Failed to load blue dot bitmap: %s\n", SDL_GetError());

@@ -9,7 +9,7 @@ bool loadCharacterBitmaps(characterBitmaps* chars, SDL_Renderer* renderer) {
     
 }
     for (char c = 'A'; c <= 'Z'; c++) {
-        sprintf(filename, "assets/font/bmp/%c.bmp", c);
+        snprintf(filename, sizeof(filename), "assets/font/bmp/%c.bmp", c);
         chars->surfaces[c] = SDL_LoadBMP(filename);
         if (!chars->surfaces[c]) {
             printf("Failed to load %c.bmp: %s\n", c, SDL_GetError());
@@ -23,7 +23,7 @@ bool loadCharacterBitmaps(characterBitmaps* chars, SDL_Renderer* renderer) {
     
 }
     for (char c = '0'; c <= '9'; c++) {
-        sprintf(filename, "assets/font/bmp/%c.bmp", c);
+        snprintf(filename, sizeof(filename), "assets/font/bmp/%c.bmp", c);
         chars->surfaces[c] = SDL_LoadBMP(filename);
         if (!chars->surfaces[c]) {
             printf("Failed to load %c.bmp: %s\n", c, SDL_GetError());

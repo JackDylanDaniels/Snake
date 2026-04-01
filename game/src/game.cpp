@@ -81,9 +81,9 @@ bool initializeSDL(GameState* game) {
 }
     game->score = 0;
     game->gameTime = 0.0f;
-    sprintf(game->timeStr, "Time: 00:00");
-    sprintf(game->scoreStr, "Score: 0");
-    sprintf(game->modeStr, "Mode: Grid");
+    snprintf(game->timeStr, sizeof(game->timeStr), "Time: 00:00");
+    snprintf(game->scoreStr, sizeof(game->scoreStr), "Score: 0");
+    snprintf(game->modeStr, sizeof(game->modeStr), "Mode: Grid");
     game->currentScreen = MAIN_MENU;
     game->selectedOption = MENU_PLAY;
     return true;

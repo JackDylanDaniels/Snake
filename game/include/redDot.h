@@ -15,7 +15,7 @@ struct RedDot {
     bool showFailedMessage;
     float messageTimer;
     char timeRemainingStr[32];
-    char bonusStr[32];
+    char bonusStr[64];
     bool isPlaced;
     bool wasEatenThisCycle;
     float pulseScale;
